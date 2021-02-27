@@ -22,7 +22,8 @@ void setup_wifi() {
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
-
+  
+  if (WiFi.getPersistent()) { WiFi.persistent(false); }
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
