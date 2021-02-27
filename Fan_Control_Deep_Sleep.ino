@@ -81,6 +81,12 @@ void setup() {
     reconnect();
   }
   client.loop();
+  
+  unsigned long time = millis();
+  while (millis () < time + 1000){
+    Serial.println("Waiting for fan to stabilize");
+    delay(1000);
+  }
 
   // Call fan.getSpeed() to get fan RPM.
   unsigned int rpms = fan.getSpeed(); // Send the command to get RPM
@@ -93,15 +99,15 @@ void setup() {
   rpmString.toCharArray(message_buff0, rpmString.length()+1); 
   client.publish("Fan-Hum/rpm", message_buff0);
 
-  unsigned long time = millis();
+  time = millis();
   while (millis () < time + 1000){
-    Serial.println("Waiting...");
+    Serial.println("Waiting for mqtt to send data");
     delay(1000);
   }
 
 
-  Serial.println("Going into deep sleep for 10 seconds");
-  ESP.deepSleep(10e6); // 20e6 is 20 microseconds
+  Serial.println("Going into deep sleep for 30 seconds");
+  ESP.deepSleep(30e6); // 30e6 is 30 seconds
 }
 
 void loop() {
