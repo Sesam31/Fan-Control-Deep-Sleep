@@ -1,6 +1,6 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include <SHT31.h>
+#include <SHT31.h>  //https://github.com/RobTillaart/SHT31.git
 #include <Wire.h>
 
 
